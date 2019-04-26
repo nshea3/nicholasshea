@@ -53,8 +53,7 @@ Pairplot:
 ![pairplot](https://i.imgur.com/we8lKaB.png)
 The raw pairplot is pretty messy, so in this situation the pairplot does not give us very useful information about clusters or useful feature pairs. Fortunately, it is clear from the “main diagonal” that these features have very different distributions, so it is likely we will be able to do meaningful learning on this dataset. 
 
-
-The dataset contains 9 different facies:
+Explanation of the 9 different facies in this dataset:
 
 Facies	|Description				|Label	|Adjacent facies
 --------|---------------------------|-------|----------------
@@ -68,3 +67,17 @@ Facies	|Description				|Label	|Adjacent facies
 8		|Packstone-grainstone		|PS		|6,7,9
 9		|Phylloid-algal bafflestone	|BS		|7,8
 
+I choose to exclude the Well Name and Formation features from this analysis because they have strong predictive power within the training data but almost no predictive power outside of the training data. Depth could be used if the task involved facies labeling in another well drilled in the same area, since the facies tend to be found at roughly the same depth across the . I initially removed it from the dataset, but I may experiment with adding . These decisions affect the generalization of our learning and it is baked in from the beginning. I may demonstrate that in a later post, but the important thing is that we know the effect is there. And we can see that from the facies countplots! 
+
+![well-countplot](https://i.imgur.com/sHn2YJS.png)
+
+The different wells have wildly differing proportions of the individual facies.
+This also demonstrates why the suggestion in the SEG article to hold out data from specific wells for testing is not sound. Following this recommendation means the learner would be tested on a different distribution than the training distribution. And neither would be a good approximation of the true distribution. The competition teams used cross validation, and I used the same. 
+
+As a last step, I generally check the class balance in the dataset. This is particularly important since it is a multiclass classification problem with many classes, which makes it even easier for a single minority class to be consistently mislabeled without seriously impacting the accuracy metric. Knowing which classes are in the minority is helpful in diagnosing these issues should they arise:
+
+![facies-countplot](https://i.imgur.com/bSvwcnH.png)
+
+So 7, 9 and 4 are most at risk for this, 7 in particular being underrepresented with less than 100 instances of dolomite in the dataset. 
+
+My next post in this series will involve some more work on summary statistics, basic unsupervised learning, and baseline supervised learning.
