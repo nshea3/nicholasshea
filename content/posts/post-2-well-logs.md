@@ -3,7 +3,7 @@ title: "Well Logs: Data Exploration"
 date: 2019-04-26T09:16:19-07:00
 ---
 
-I was a student in Georgia Tech’s CS7641 graduate machine learning course in this past Fall semester. The course is organized around four large projects, each focused on one of the core ML method classes. The semester begins with selecting a dataset suitable for use on 3 of these projects (Supervised, Unsupervised, and Randomized Optimization). 
+I was a student in Georgia Tech’s CS7641 graduate machine learning course in this past Fall. The course is organized around four large projects, each focused on one of the core ML method classes. The semester begins with selecting a dataset suitable for 3 of these projects (Supervised, Unsupervised, and Randomized Optimization). 
 
 I was very keen to find some data in line with my interests. Unfortunately, none of the classic datasets (UCI repository, etc.) are related to geoscience. It takes a little digging, but there are a surprising amount of open geoscience datasets available online. I was thrilled to discover [a tutorial] (https://wiki.seg.org/wiki/Facies_classification_using_machine_learning)  from the SEG on machine learning applied to a facies classification task. 
 
@@ -11,7 +11,7 @@ The article links to a [Github repo](https://github.com/seg/2016-ml-contest) and
 
 I’ll pull a few paragraphs from my paper to better explain the problem:
 
->Facies classification is the problem of determining a rock unit name from a well log recorded by lowering instruments down a borehole. It is a multi-class classification problem. The attributes available from a well-log are commonly physical and chemical properties of the rock. In this dataset, the well log includes a measure of natural gamma ray radioactivity, rock resistivity, photoelectric effect from a gamma source, and neutron measurements of porosity and hydrogen concentration. 
+>Facies classification is the problem of determining a rock unit name from a well log recorded by lowering instruments down a borehole. It is a multi-class classification problem. The attributes available from a well-log are commonly physical and chemical properties of the rock. In this dataset, the well log includes a measure of natural gamma ray radioactivity, rock electrical resistivity, photoelectric effect from an active gamma source, and active neutron measurements of porosity and hydrogen concentration. 
 >
 >The nine rock classes in this dataset vary in their composition and origin and thus have different physical characteristics and responses that allow an expert team of geoscientists to determine which rock unit is located at what depth in the bore hole. 
 >
@@ -45,11 +45,11 @@ In this first post, I’d like to just work on summary statistics and some visua
 
 As I mentioned earlier, the dataset has 5 different quantitative/continuous features: natural gamma ray radioactivity, rock resistivity, photoelectric effect from a gamma source, and neutron measurements of porosity and hydrogen concentration. Since they are measured on an absolute scale, they are ratio quantities.
 
-Summary statistics:
+### Summary statistics:
 ![summary-stats](https://i.imgur.com/vTyOIWy.png)
-And we’re already looking pretty good! Since the count matches the size of the dataframe, we don’t have any null values to worry about. While that’s not realistic, it is a relief and definitely reduces our workload. 
+Since the count matches the size of the dataframe, we don’t have any null values to worry about. While that’s not realistic, it is a relief and definitely reduces our workload. 
 
-Pairplot:
+### Pairplot:
 ![pairplot](https://i.imgur.com/we8lKaB.png)
 The raw pairplot is pretty messy, so in this situation the pairplot does not give us very useful information about clusters or useful feature pairs. Fortunately, it is clear from the “main diagonal” that these features have very different distributions, so it is likely we will be able to do meaningful learning on this dataset. 
 
@@ -69,6 +69,7 @@ Facies	|Description				|Label	|Adjacent facies
 
 I choose to exclude the Well Name and Formation features from this analysis because they have strong predictive power within the training data but almost no predictive power outside of the training data. Depth could be used if the task involved facies labeling in another well drilled in the same area, since the facies tend to be found at roughly the same depth across the . I initially removed it from the dataset, but I may experiment with adding . These decisions affect the generalization of our learning and it is baked in from the beginning. I may demonstrate that in a later post, but the important thing is that we know the effect is there. And we can see that from the facies countplots! 
 
+### Facies countplot by well:
 ![well-countplot](https://i.imgur.com/sHn2YJS.png)
 
 The different wells have wildly differing proportions of the individual facies.
@@ -76,6 +77,7 @@ This also demonstrates why the suggestion in the SEG article to hold out data fr
 
 As a last step, I generally check the class balance in the dataset. This is particularly important since it is a multiclass classification problem with many classes, which makes it even easier for a single minority class to be consistently mislabeled without seriously impacting the accuracy metric. Knowing which classes are in the minority is helpful in diagnosing these issues should they arise:
 
+### Facies countplot:
 ![facies-countplot](https://i.imgur.com/bSvwcnH.png)
 
 So 7, 9 and 4 are most at risk for this, 7 in particular being underrepresented with less than 100 instances of dolomite in the dataset. 
