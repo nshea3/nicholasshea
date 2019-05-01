@@ -51,7 +51,7 @@ Since the count matches the size of the dataframe, we don’t have any null valu
 
 ### Pairplot:
 ![pairplot](https://i.imgur.com/we8lKaB.png)
-The raw pairplot is pretty messy, so in this situation the pairplot does not give us very useful information about clusters or useful feature pairs. Fortunately, it is clear from the “main diagonal” that these features have very different distributions, so it is likely we will be able to do meaningful learning on this dataset. 
+The raw pairplot is pretty messy, so in this situation the pairplot does not give us especially useful information about clusters. Fortunately, it is clear from the “main diagonal” that these features have very different distributions, so it is likely we will be able to do meaningful learning on this dataset.
 
 Explanation of the 9 different facies in this dataset:
 
@@ -67,13 +67,13 @@ Facies	|Description				|Label	|Adjacent facies
 8		|Packstone-grainstone		|PS		|6,7,9
 9		|Phylloid-algal bafflestone	|BS		|7,8
 
-I choose to exclude the Well Name and Formation features from this analysis because they have strong predictive power within the training data but almost no predictive power outside of the training data. Depth could be used if the task involved facies labeling in another well drilled in the same area, since the facies tend to be found at roughly the same depth across the . I initially removed it from the dataset, but I may experiment with adding . These decisions affect the generalization of our learning and it is baked in from the beginning. I may demonstrate that in a later post, but the important thing is that we know the effect is there. And we can see that from the facies countplots! 
+I choose to exclude the Well Name and Formation features from this analysis because they have strong predictive power within the training data but almost no predictive power outside of the training data. Depth could be used if the task involved facies labeling in another well drilled in the same area, since the facies tend to be found at roughly the same depth. I initially removed it from the dataset, but I may experiment with adding it in later. These decisions affect the generalization of our learning and the effect is baked in from the beginning. I may demonstrate that in a later post, but it is important to be aware at this stage. And we can see that from the facies countplots! 
 
 ### Facies countplot by well:
 ![well-countplot](https://i.imgur.com/sHn2YJS.png)
 
-The different wells have wildly differing proportions of the individual facies.
-This also demonstrates why the suggestion in the SEG article to hold out data from specific wells for testing is not sound. Following this recommendation means the learner would be tested on a different distribution than the training distribution. And neither would be a good approximation of the true distribution. The competition teams used cross validation, and I used the same. 
+The different wells have very different proportions of the individual facies.
+This also demonstrates why the suggestion in the SEG article to hold out data from specific wells for testing is not sound. Following this recommendation means the learner would be tested on a different distribution than the training distribution. And neither would be a good approximation of the true distribution. The competition teams used cross validation, and I used the same metric. 
 
 As a last step, I generally check the class balance in the dataset. This is particularly important since it is a multiclass classification problem with many classes, which makes it even easier for a single minority class to be consistently mislabeled without seriously impacting the accuracy metric. Knowing which classes are in the minority is helpful in diagnosing these issues should they arise:
 
@@ -83,3 +83,19 @@ As a last step, I generally check the class balance in the dataset. This is part
 So 7, 9 and 4 are most at risk for this, 7 in particular being underrepresented with less than 100 instances of dolomite in the dataset. 
 
 My next post in this series will involve some more work on summary statistics, basic unsupervised learning, and baseline supervised learning.
+
+Some sources I found useful:
+
+* [Definition: Facies] (https://www.glossary.oilfield.slb.com/en/Terms/f/facies.aspx)
+
+* [A note on using the F-measure for evaluating record linkage algorithms]
+(https://app.dimensions.ai/details/publication/pub.1084928040)
+
+* [Facies classification using machine learning]
+(https://wiki.seg.org/wiki/Facies_classification_using_machine_learning)
+
+* [Data Visualization in Python: Advanced Functionality in Seaborn]
+(https://blog.insightdatascience.com/data-visualization-in-python-advanced-functionality-in-seaborn-20d217f1a9a6)
+
+* [Comparison of Rock Facies Classification using Three Statistically Based Classifiers]
+(http://www.kgs.ku.edu/PRS/publication/2004/OFR04_64/index.html)
