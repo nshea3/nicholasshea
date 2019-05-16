@@ -28,11 +28,11 @@ map_wells
 
 The interactive plot means you are free to zoom in on interesting areas and then look at the global distribution without generating a whole new figure. 
 
-<iframe width="640" height="480" src="http://nsdotcom.s3-website-us-east-1.amazonaws.com/posts/plot_data.html" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="480" src="https://www.nicholasshea.com/posts/plot_data.html" frameborder="0" allowfullscreen></iframe>
 
 My only complaints so far are how it deals with huge amounts of points (the HTML file is huge and slow to render), and the fact that you can't save a static image of the map. This also limits how the map is displayed when the notebook is hosted, since if it isn't interactive the map will not render. I resorted to screenshotting the interactive map for display in the notebook, which obviously isn't the best solution. The convenience of having an interactive map  is hard to beat though, and you can add even more interaction features with tooltips and data selection/interrogation in the interactive map, using `Map.add_child(folium.LatLngPopup())` and related methods. And you can also choose among a variety of basemaps with the `tiles` argument to `folium.Map`:
 
-<iframe width="640" height="480" src="http://nsdotcom.s3-website-us-east-1.amazonaws.com/posts/plot_data_2.html" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="480" src="https://www.nicholasshea.com/posts/plot_data_2.html" frameborder="0" allowfullscreen></iframe>
 
 Unfortunately I have not had any luck using popups, I think that would be really useful for my work but I just can't get it to work. I understand there are some issues with special characters and possibly version problems as well so I will keep an eye out for that feature.
 
