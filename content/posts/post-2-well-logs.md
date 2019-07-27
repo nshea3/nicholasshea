@@ -51,7 +51,7 @@ Since the count matches the size of the dataframe, we don’t have any null valu
 
 ### Pairplot:
 ![pairplot](https://i.imgur.com/we8lKaB.png)
-The raw pairplot is pretty messy, so in this situation the pairplot does not give us especially useful information about clusters. Fortunately, it is clear from the “main diagonal” that these features have very different distributions, so it is likely we will be able to do meaningful learning on this dataset.
+The raw pairplot is pretty messy, so in this situation the pairplot does not give us especially useful information about clusters. Fortunately, it is clear from the “main diagonal” that these features have very different distributions for the different facies, so it is likely we will be able to do meaningful learning on this dataset.
 
 Explanation of the 9 different facies in this dataset:
 
