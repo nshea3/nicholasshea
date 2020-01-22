@@ -31,6 +31,10 @@ This is much of what I learned . My argument borrows heavily from a few differen
 This one was admittedly not clear. Why would noise be concentrated in the lower components (not the principal components). Wouldn't noise be 
 
 We are looking at COVARIANCE, not VARIANCE (though we are also sorta looking at variance?)
+Not just that they spread, they spread together
+If one is high, other is high
+If one is low, other is low 
+(This makes sense)
 
 *It's an assumption of the process that the noise components have lower variance than the signal*. In some cases, noise components can have higher variance than the data and in this case principal components will fail to give an intuitive order of image quality [(Source)](http://www2.compute.dtu.dk/pubdb/views/edoc_download.php/209/pdf/imm209.pdf)
 
