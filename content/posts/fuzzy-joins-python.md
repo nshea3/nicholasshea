@@ -36,5 +36,6 @@ References:
 [Cleaning Big Data: Most Time-Consuming, Least Enjoyable Data Science Task, Survey Says](https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#72ce17c06f63)
 
 [Python Record Linkage Toolkit](https://recordlinkage.readthedocs.io/en/latest/about.html)
-[]()
+
+[DEDUPE.IO](https://docs.dedupe.io/en/latest/API-documentation.html)
 []()
