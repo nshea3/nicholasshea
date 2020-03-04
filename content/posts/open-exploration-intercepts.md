@@ -43,13 +43,13 @@ https://www.visualcapitalist.com/mineral-exploration-roadmap/
 https://www.visualcapitalist.com/equity-financing-mining-exploration-sector/
 
 
-
-
 # Example 
 
 ## Data Extraction + Wrangling
 
-https://www.oceanagold.com/investor-centre/filings/
+The data from exploration drilling campaigns are normally split into three files: collars, surveys, and assays. 
+
+We'll use an example from https://www.oceanagold.com/investor-centre/filings/
 
 This will be a multi step process:
 
@@ -59,12 +59,22 @@ This will be a multi step process:
 
 - 
 
-### Collars 
+### Collars + Mapping
+
+Assays 
 
 The collars are in UTM NAD83 
 South Carolina is UTM Zone 17
 
+
+
 ## Load the Results
+
+
+## Desurveying 
+
+
+We'll go through the math but 
 
 
 ## Plot 
@@ -73,3 +83,9 @@ South Carolina is UTM Zone 17
 ## Next steps
 
 This data is too sparse for useful kriging interpolation, I might attempt to do some geostatistical simulation work to try and get a distribution for the size and grade of the deposit. Or, we could look at the drill results across multiple properties and determine favorability or do prediction. 
+
+
+## Sources:
+
+https://gis.stackexchange.com/questions/174159/convert-a-pandas-dataframe-to-a-geodataframe
+
