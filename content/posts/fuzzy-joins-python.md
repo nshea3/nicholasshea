@@ -6,20 +6,27 @@ draft: true
 
 # Fuzzy Joins in Python
 
-Data wrangling is widely seen as a , with most data scientists spending 50 to 80% of their time cleaning data. I have worked with , but I recently dealt with an exceptional situation. I was working with two independent datasets owned and maintaned by two separate government entities. They shared a "primary key" column. I crossed my fingers,
+Data wrangling is widely seen as a , with most data scientists spending 50 to 80% of their time cleaning data. I have worked with , but I recently dealt with an exceptional situation. I was working with two independent datasets owned and maintaned by two separate government entities. They shared a "key" column, with the same column name in both CSVs and even the same description in the , so I thought . I crossed my fingers, ran [`pandas.DataFrame.merge`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html) and waited for the cell to execute. A few seconds passed, the cell finished executing. I took a quick look at the dataframe, filtering out NULLs to , 
 
-And poof, 80% of the rows are *gone*. 
+and poof, 80% of the rows are *gone*. 
 
-Start poking around in the dataframes:
-
+# When the Foreign Key is less Key and more Foreign 
 
 The. I thought there was a shared key. There is not! 
 
-I tried a few different . It was soon obvious that . Fortunately, a few searches later I was poring over documentation for a Python package and learning about the science of Record Linkage. 
+I tried a few different heuristics and . It was soon obvious that I would need a . Fortunately, a few searches later I was poring over documentation for a Python package and learning about the science of Record Linkage. 
 
 ## Record Linkage
 
-This approach . Totally unscalable to 
+Here, I was trying to reduce the number of matches that are made, working under the hypothesis that the memory savings would be sufficient to . I was looking in the right direction, but 
+
+```python
+import recordlinkage
+
+indexer = recordlinkage.Index()
+indexer.block('given_name')
+candidate_links = indexer.index(dfA, dfB)
+```
 
 ## 
 
