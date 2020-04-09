@@ -20,19 +20,33 @@ I tried a few different heuristics and . It was soon obvious that I would need a
 
 Here, I was trying to reduce the number of matches that are made, working under the hypothesis that the memory savings would be sufficient to . I was looking in the right direction, but 
 
+This is called *blocking* in record linkage problems, and it is easy to accomplish in `recordlinkage`. 
+
 ```python
 import recordlinkage
 
 indexer = recordlinkage.Index()
-indexer.block('given_name')
+
+indexer.block('zipcode')
+
 candidate_links = indexer.index(dfA, dfB)
 ```
+
+Here we are blocking on zipcode, since it turned out that the zip codes were stored in a common format. 
 
 ## 
 
 Data scientists report dissatistfaction. I honestly enjoy the work, implementing standards, making reproducible workflows. 
 
 This was not user-submitted.
+
+
+## Pitfalls
+
+There are still limitations 
+
+Things can get big quickly when you consider the cross join. This will result in out of memory errors, CPU hammering 
+
 
 References:
 
